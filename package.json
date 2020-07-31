@@ -2,12 +2,15 @@
     "name": "deno_docker",
     "version": "0.1.4",
     "scripts": {
-        "build": "docker build -t deno_app:0.1.4 -f Dockerfiles/Dockerfile.dev . && docker create --name deno_app --volume $(PWD)/src:/app -p 1991:1991 deno_app:0.1.4",
-        "release": "docker build -t deno_app_prod:0.1.4 -f Dockerfiles/Dockerfile.prod . && docker create --name deno_app -p 1991:1991 deno_app:0.1.4",
+        "dev": "npm run build && npm run create:dev && npm run start && echo '\nStarted successfully, happy developing!'",
+        "build": "docker build -t deno_app:0.1.4 -f Dockerfile.dev .",
+        "release": "docker build -t deno_app_prod:0.1.4 -f Dockerfile.prod . && npm run create:prod",
+        "create:dev": "docker create --label=deno_app --name deno_app --volume $(PWD)/src:/app -p 1991:1991 deno_app:0.1.4",
+        "create:prod": "docker create --label=deno_app --name deno_app -p 1991:1991 deno_app:0.1.4",
         "start:log": "docker run --volume $(PWD)/src:/app -p 1991:1991 deno_app:0.1.4",
         "start": "docker start deno_app",
-        "stop": "docker stop deno_app",
-        "prune": "docker container prune"
+        "stop": "docker stop deno_app && npm run prune",
+        "prune": "docker container prune --force --filter label=deno_app"
     },
     "repository": {
         "type": "git",

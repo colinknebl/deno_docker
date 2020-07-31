@@ -17,15 +17,16 @@ ENV PATH="$DENO_INSTALL/bin:$PATH"
 COPY deps.ts .
 RUN deno cache deps.ts
 
-# The port that your application listens to.
-EXPOSE 1991
-
 # Set the working director to /app
 WORKDIR /app
 
+# Copy the src code to /app
 COPY src/ .
 
 # Compile the main app so that it doesn't need to be compiled each startup/entry.
 RUN deno cache main.ts
+
+# The port that your application listens to.
+EXPOSE 1991
 
 CMD ["deno", "run", "--allow-net", "/app/main.ts"]
