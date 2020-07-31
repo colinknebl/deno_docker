@@ -5,25 +5,33 @@
 ### Build
 
 ```bash
-docker build -t deno_app:0.1.4
+npm run build
 ```
 
 ### Run
 
 ```bash
-docker run --name deno_app -p 1991:1991  deno_app:0.1.4
+npm run start:log
 ```
 
 ### Start
 
 ```
-docker start deno_app
+npm run start
 ```
 
 ### Stop
 
 ```bash
-docker stop deno_app
+npm run stop
+```
+
+### Releaes
+
+```bash
+npm run release
 ```
 
 ## Notes
+
+https://gist.github.com/colinknebl/f7aac4cfb1ee06e7bbee1a85115e249c

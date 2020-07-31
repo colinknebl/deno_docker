@@ -1,0 +1,23 @@
+{
+    "name": "deno_docker",
+    "version": "0.1.4",
+    "scripts": {
+        "build": "docker build -t deno_app:0.1.4 -f Dockerfiles/Dockerfile.dev . && docker create --name deno_app --volume $(PWD)/src:/app -p 1991:1991 deno_app:0.1.4",
+        "release": "docker build -t deno_app_prod:0.1.4 -f Dockerfiles/Dockerfile.prod . && docker create --name deno_app -p 1991:1991 deno_app:0.1.4",
+        "start:log": "docker run --volume $(PWD)/src:/app -p 1991:1991 deno_app:0.1.4",
+        "start": "docker start deno_app",
+        "stop": "docker stop deno_app",
+        "prune": "docker container prune"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/colinknebl/deno_docker.git"
+    },
+    "keywords": [],
+    "author": "Colin Knebl",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/colinknebl/deno_docker/issues"
+    },
+    "homepage": "https://github.com/colinknebl/deno_docker#readme"
+}
