@@ -22,12 +22,13 @@ stages:
     steps:
         
     - task: Docker@2
-      displayName: Build an image
+      displayName: Build image
       inputs:
         command: build
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile.prod'
         tags: |
           $(tag)
+          latest
 
     - task: Docker@2
       displayName: Push image
@@ -35,9 +36,10 @@ stages:
         containerRegistry: |
           dockerHubServiceConnection
         # repository: 
-        repository: $(imageName)
+        repository: api
         command: push
         tags: |
           1
+          latest
           test1
           test2
