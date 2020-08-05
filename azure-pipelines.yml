@@ -1,0 +1,56 @@
+# Docker
+# Build a Docker image 
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- master
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    
+    - task: Docker@2
+      displayName: Build and Push
+      inputs:
+        command: buildAndPush
+        containerRegistry: dockerHubServiceConnection
+        Dockerfile: '$(Build.SourcesDirectory)/Dockerfile.prod'
+        repository: colinknebl/api
+        tags: |
+          1
+          latest
+        
+    # - task: Docker@2
+    #   displayName: Build image
+    #   inputs:
+    #     command: build
+    #     dockerfile: '$(Build.SourcesDirectory)/Dockerfile.prod'
+    #     tags: |
+    #       $(tag)
+    #       latest
+
+    # - task: Docker@2
+    #   displayName: Push image
+    #   inputs:
+    #     containerRegistry: |
+    #       dockerHubServiceConnection
+    #     # repository: 
+    #     repository: api
+    #     command: push
+    #     tags: |
+    #       1
+    #       latest
+    #       test1
+    #       test2
