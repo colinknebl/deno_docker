@@ -13,10 +13,6 @@ RUN curl -fsSL https://deno.land/x/install/install.sh | sh
 ENV DENO_INSTALL="/root/.deno"
 ENV PATH="$DENO_INSTALL/bin:$PATH"
 
-# Cache the dependencies
-COPY deps.ts .
-RUN deno cache deps.ts
-
 # Set the working director to /app
 WORKDIR /app
 

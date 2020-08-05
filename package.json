@@ -2,15 +2,15 @@
     "name": "deno_docker",
     "version": "0.1.4",
     "scripts": {
-        "dev": "npm run build && npm run create:dev && npm run start && echo '\nStarted successfully, happy developing!'",
-        "build": "docker build -t deno_app:0.1.4 -f Dockerfile.dev .",
-        "release": "docker build -t deno_app_prod:0.1.4 -f Dockerfile.prod . && npm run create:prod",
-        "create:dev": "docker create --label=deno_app --name deno_app --volume $(PWD)/src:/app -p 1991:1991 deno_app:0.1.4",
-        "create:prod": "docker create --label=deno_app --name deno_app -p 1991:1991 deno_app:0.1.4",
-        "start:log": "docker run --volume $(PWD)/src:/app -p 1991:1991 deno_app:0.1.4",
-        "start": "docker start deno_app",
-        "stop": "docker stop deno_app && npm run prune",
-        "prune": "docker container prune --force --filter label=deno_app"
+        "start": "denon run --allow-net src/main.ts",
+        "docker:build": "docker build -t api:1 -f Dockerfile.prod .",
+        "docker:create": "docker create --label api --name api -p 1991:1991 api:1",
+        "docker:run": "docker run -d --label api --name api -p 1991:1991 --volume $(pwd)/src:/app api:1",
+        "docker:start": "docker start api",
+        "docker:stop": "docker stop api",
+        "docker:prune": "docker container prune --force --filter label=api",
+        "docker:tag": "docker tag $(docker image ls | grep api | awk '{ print $3 }') colinknebl/api:1",
+        "docker:push": "docker push colinknebl/api"
     },
     "repository": {
         "type": "git",
