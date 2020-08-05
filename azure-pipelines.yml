@@ -35,7 +35,7 @@ stages:
         containerRegistry: |
           dockerHubServiceConnection
         # repository: 
-        repository: colinknebl/api
+        repository: $(imageName)
         command: push
         tags: |
           1
