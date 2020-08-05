@@ -33,7 +33,7 @@ stages:
       displayName: Push image
       inputs:
         containerRegistry: |
-          $(dockerHub)
+          'dockerHub'
         # repository: 
         repository: colinknebl/api
         command: push
