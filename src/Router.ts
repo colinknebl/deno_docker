@@ -10,7 +10,7 @@ books.set("1", {
 const router = new Router();
 router
   .get("/", (context) => {
-    context.response.body = "This is the API.";
+    context.response.body = "Welcome, this is the API skeleton.";
   })
   .get("/books", (context) => {
     context.response.body = Array.from(books.values());
