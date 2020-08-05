@@ -20,11 +20,6 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-    - task: Docker@2
-      displayName: Login
-      inputs:
-        command: login
-        containerRegistry: dockerRegistryServiceConnection1
         
     - task: Docker@2
       displayName: Build an image
