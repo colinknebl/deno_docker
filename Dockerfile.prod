@@ -1,17 +1,4 @@
-FROM ubuntu:latest
-
-# update ubuntu
-RUN apt-get update
-
-# install deps required to install deno
-RUN apt-get install -y apt-utils curl zip unzip
-
-# install deno
-RUN curl -fsSL https://deno.land/x/install/install.sh | sh
-
-# Add deno to PATH
-ENV DENO_INSTALL="/root/.deno"
-ENV PATH="$DENO_INSTALL/bin:$PATH"
+FROM colinknebl/deno:latest
 
 # Set the working director to /app
 WORKDIR /app
