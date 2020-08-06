@@ -28,7 +28,7 @@ stages:
       inputs:
         script: |
           echo running tests...
-          echo deno test
+          deno test
     
     - task: Docker@2
       displayName: Build and Push
