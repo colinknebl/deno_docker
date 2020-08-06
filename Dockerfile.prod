@@ -1,4 +1,4 @@
-FROM colinknebl/deno:latest
+FROM colinknebl/deno:1.2.2
 
 # Set the working director to /app
 WORKDIR /app
@@ -12,4 +12,5 @@ RUN deno cache main.ts
 # The port that your application listens to.
 EXPOSE 1991
 
+# Start the app
 CMD ["deno", "run", "--allow-net", "/app/main.ts"]
