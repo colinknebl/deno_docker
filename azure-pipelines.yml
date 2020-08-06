@@ -19,19 +19,23 @@ stages:
     displayName: Build
     pool:
       vmImage: 'ubuntu-latest'
+
     steps:
+    
     - task: DenoDownload@1
+      displayName: Download Deno
       inputs:
         version: 1.2.2
 
     - task: CmdLine@2
+      displayName: Run Tests
       inputs:
         script: |
           echo running tests...
           deno test
     
     - task: Docker@2
-      displayName: Build and Push
+      displayName: Build and Push Docker Image
       inputs:
         command: buildAndPush
         containerRegistry: dockerHubServiceConnection
