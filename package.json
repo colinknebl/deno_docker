@@ -11,7 +11,10 @@
         "docker:stop": "docker stop api",
         "docker:prune": "docker container prune --force --filter label=api",
         "docker:tag": "docker tag $(docker image ls | grep api | awk '{ print $3 }') colinknebl/api:1",
-        "docker:push": "docker push colinknebl/api"
+        "docker:push": "docker push colinknebl/api",
+        "docker:dev:build": "docker build -t api:dev -f Dockerfile.dev .",
+        "docker:dev:start": "docker run --label api_dev --name api_dev -p 1991:1991 --volume $(pwd)/src:/app api:dev",
+        "docker:dev:stop": "docker stop api_dev && docker container rm $(docker container ls -a | grep api_dev | awk '{ print $1 }')"
     },
     "repository": {
         "type": "git",
