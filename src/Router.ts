@@ -13,7 +13,7 @@ router
     context.response.body = "Welcome, this is the API skeleton.";
   })
   .get("/pipeline-test-message", (context) => {
-    context.response.body = "Pipeline test message! WooHoo!";
+    context.response.body = "Pipeline test message! Boom, baby!";
   })
   .get("/books", (context) => {
     context.response.body = Array.from(books.values());
