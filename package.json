@@ -2,6 +2,7 @@
     "name": "deno_docker",
     "version": "0.1.4",
     "scripts": {
+        "test": "deno test",
         "start": "denon run --allow-net src/main.ts",
         "docker:build": "docker build -t api:1 -f Dockerfile.prod .",
         "docker:create": "docker create --label api --name api -p 1991:1991 api:1",
