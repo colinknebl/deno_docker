@@ -9,9 +9,7 @@ resources:
 - repo: self
 
 variables:
-  tag: '$(Build.BuildId)'
-
-name: $(Date:yyyyMMdd)_$(Rev:r)
+  tag: '$(Build.BuildNumber)'
 
 stages:
 - stage: Build
@@ -25,8 +23,8 @@ stages:
     steps:
 
     - script: |
-        echo $(Build.name) $(Build.Name) $(Build.DefinitionName)
-      displayName: Print name
+        echo $(tag)
+      displayName: Print Tag
     
     - task: DenoDownload@1
       displayName: Download Deno
