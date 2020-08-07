@@ -25,7 +25,7 @@ stages:
     steps:
 
     - script: |
-        echo $(name)
+        echo $(Build.name) $(Build.Name) $(Build.DefinitionName)
       displayName: Print name
     
     - task: DenoDownload@1
