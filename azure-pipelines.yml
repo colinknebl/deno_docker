@@ -9,7 +9,7 @@ resources:
 - repo: self
 
 variables:
-  tag: '$(Date:yyyyMMdd).$(Rev:r)'
+  tag: $(Date:yyyyMMdd).$(Rev:r)
 
 stages:
 - stage: Build
@@ -21,6 +21,10 @@ stages:
       vmImage: 'ubuntu-latest'
 
     steps:
+
+    - script: |
+        echo $(tag)
+      displayName: Print tag
     
     - task: DenoDownload@1
       displayName: Download Deno
