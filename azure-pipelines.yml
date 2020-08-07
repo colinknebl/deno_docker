@@ -42,5 +42,5 @@ stages:
         Dockerfile: '$(Build.SourcesDirectory)/Dockerfile.prod'
         repository: colinknebl/api
         tags: |
-          1
+          $(tag)
           latest
